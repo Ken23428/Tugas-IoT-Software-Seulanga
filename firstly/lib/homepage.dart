@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
             controller: _controller,
             count: 4,
             effect: ExpandingDotsEffect(
-              activeDotColor: Colors.green,
+              activeDotColor: const Color.fromARGB(255, 87, 201, 91),
               dotColor: Colors.green.shade100,
               dotHeight: 10,
               dotWidth: 10,

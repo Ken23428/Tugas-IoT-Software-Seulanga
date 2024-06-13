@@ -7,94 +7,99 @@ class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Column(
-            children: [
-              Text(
-                'Divisi Seulanga',
-                style: GoogleFonts.pacifico(
-                  textStyle: TextStyle(fontSize: 26, color: Colors.green),
-                ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.2, // Mengatur transparansi gambar latar belakang
+              child: Image.asset(
+                'lib/gambar/Logo_Seulanga.png',
+                fit: BoxFit.cover,
               ),
-              SizedBox(height: 20),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  height: 360,
-                  width: double.infinity,
-                  color: Color.fromARGB(255, 118, 230, 121),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Divisi Seulanga',
+                    style: GoogleFonts.pacifico(
+                      textStyle: TextStyle(fontSize: 26, color: Colors.green),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Expanded(
+                    child: GridView.count(
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 1.5,
                       children: [
-                        Text(
-                          'Divisi Seulanga terbagi akan 2 yaitu:',
-                          style: GoogleFonts.lato(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              height: 1.5,
-                            ),
-                          ),
+                        buildDivisionCard(
+                          'Cyber Security',
+                          'lib/gambar/cybersecurity.png',
+                          Colors.white,
                         ),
-                        SizedBox(height: 20),
-                        Text(
-                          '1. Cyber Security',
-                          style: GoogleFonts.lato(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                        buildDivisionCard(
+                          'IoT Hardware',
+                          'lib/gambar/IoTHardware.png',
+                          Colors.white,
                         ),
-                        SizedBox(height: 10),
-                        Text(
-                          '2. IoT (Internet of Things)',
-                          style: GoogleFonts.lato(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '-   IoT Hardware',
-                              style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              '-   IoT Software ',
-                              style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
+                        buildDivisionCard(
+                          'IoT Software',
+                          'lib/gambar/IoTSoftware.png',
+                          Colors.white,
                         ),
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDivisionCard(
+      String title, String imagePath, Color backgroundColor) {
+    return Card(
+      color: backgroundColor,
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+              child: Image.asset(
+                imagePath,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              title,
+              style: GoogleFonts.lato(
+                textStyle: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

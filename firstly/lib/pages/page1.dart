@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,42 +10,39 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          children: [
-            Spacer(flex: 2), // Spacer untuk memberikan jarak dari atas layar
-            Text(
-              'Seulanga',
-              style: GoogleFonts.montserrat(
-                textStyle: TextStyle(
-                    fontSize: 30,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
+      body: Stack(
+        children: [
+          // Background image with opacity
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.2,
+              child: Image.asset(
+                'lib/gambar/Logo_Seulanga.png',
+                fit: BoxFit.cover,
               ),
             ),
-            Spacer(
-                flex:
-                    9), // Spacer untuk memberikan sedikit jarak antara teks dan gambar
-            Image.asset(
-              'lib/gambar/logo_seulanga_hd.png', // pastikan jalur ke gambar benar
-              height: 150,
+          ),
+          // Main content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(),
+                ),
+                Image.asset(
+                  'lib/gambar/Logo_Seulanga.png',
+                  height: 150,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Container(),
+                ),
+              ],
             ),
-            Spacer(
-                flex:
-                    12), // Spacer untuk memberikan sedikit jarak antara logo dan teks baru
-            Text(
-              'Homepage',
-              style: GoogleFonts.montserrat(
-                textStyle: TextStyle(
-                    fontSize: 22,
-                    color: const Color.fromARGB(255, 149, 148, 148),
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Spacer(
-                flex: 10), // Spacer untuk mengisi sisa ruang di bawah teks baru
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
